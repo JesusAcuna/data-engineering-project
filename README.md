@@ -47,3 +47,9 @@ The repository contains the next files and folders:
 - `Kitchenware_Classification.ipynb`: python notebook where the analysis and modeling is done
 
 ## 1. Description of the problem
+
+
+
+
+
+
