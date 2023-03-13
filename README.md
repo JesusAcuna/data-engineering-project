@@ -39,38 +39,48 @@ The repository contains the next files and folders:
     - `Train`     : Small image training set from `Full_train`
     - `Val`       : Small image testing set from `Full_train`
 - `data`: directory of image dataset
-- `images`: directory of images to README.md
-- `static`: directory of css, js files and images for frontend 
-- `templates`: directory of html files for frontend 
-- `Dockerfile`: archive to containerize the project
-- `app.py`: python script to make the web service for classification with `Flask`  <b>FRONTEND</b>
-- `best_model.h5`: file of best chosen model 
-- `best_model.tflite`: file with extension tensorflow lite of best chosen model
-- `convert_to_tflite.py`: python script to convert a 'h5' file to 'tfile' file
-- `model.py`: python script to enter image, do normalization and prediction <b>BACKEND</b>
-- `requirements.txt`: file with dependencies and libraries
-- `train.py`: python script to tune parameters and train a best model, from this script you get the directory `Kitchenware_data` and the file `best_model.h5`
-- `Kitchenware_Classification.ipynb`: python notebook where the analysis and modeling is done
 
 ## 1. Description of the problem
 
 <p align="justify">
-The purpose of the nutritional status information system - SIEN, is to generate timely information on the nutritional status of the population that accesses the health establishments of the Ministry of Health, for decision-making and intervention planning at the local, regional and that contribute to improve the quality of life in Peru.
+The improvement of child and pregnant women health indicators correspond to equity measures, since these groups are the most vulnerable, so their monitoring and analysis is a priority in the development of the nation. In children under five years of age, the monitoring of indicators of chronic, global and acute malnutrition, overweight, obesity and anemia are the most relevant from the point of view of nutritional status, likewise in pregnant women are the deficit of weight, overweight and anemia, and how they affect childbirth and the newborn.
 </p>
+
+<p align="justify">
+Among the indicators that are evaluated in children under fiver years of age "<b>Chronic child malnutrition</b>" is one of the main public health problems in Perú, which negatively affects their health and education, and therefore their future. 
+</p>
+<p align="justify">
+During the period from 2009 to 2021 <b>chronic child malnutrition</b> has been slowly reduced from 25.2% to 15.1%, about 1% per year.
+</p>
+
+<div align="center">
+
+ADD GRAPHIC
+
+| Indicators           | 2009    | 2020    | 2021   |
+| :------------------: | :-----: | :-----: | :----: |
+| Chronic Malnutrition | 25.2%   | 16.5%   |  15.1% |
+| Acute Malnutrition   | 3.0%    | 1.6%    |  1.8%  |
+| Global Malnutrition  | 5.5%    | 3.5%    |  3.8%  |
+
+</div>
+
+Source:
+> https://web.ins.gob.pe/sites/default/files/Archivos/cenan/van/informes/2021/Inf%20Gerencial%20SIEN-HIS%202021.pdf
 
 ## 2. Objective
 
 <p align="justify">
-
-Develop a data infrastructure including data pipelines and a dashboard for users to perform advanced analytics tasks on the 
-
-Select a dataset.
-Create a pipeline for processing this dataset and putting it to a data-lake.
-Create a pipeline for moving the data from the lake to a data warehouse.
-Transform the data in the data warehouse: prepare it for the dashboard.
-Create a dashboard.
+Develop a data infrastructure including data pipelines and a dashboard for users to perform advanced analytics, this is for the purpose of generating timely information each month on the nutritional status of the population, for decision-making and intervention planning at the local, regional and that contribute to improve the quality of life in Perú. 
 </p>
 
+Workflow:
+
+- Select a dataset.
+- Create a pipeline for processing this dataset and putting it to a data-lake.
+- Create a pipeline for moving the data from the lake to a data warehouse.
+- Transform the data in the data warehouse: prepare it for the dashboard.
+- Create a dashboard.
 
 ## 3. Data description
 
