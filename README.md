@@ -84,7 +84,45 @@ Workflow:
 
 ## 3. Data description
 
-The source of information is secondary, it corresponds to the information registered in the Clinical Histories of the Health Establishments of the Ministry of Health Peru, the registry is daily in the SIEN and HIS/MINSA. The processing and cleaning of the databases, generation of reports through tables and graphs, management reports are the responsibility of the INS/CENAN, financed by the articulated nutritional budget program (PAN).
+<p align="justify">
+The source of information is secondary, it corresponds to the information registered in the Clinical Histories of the Health Establishments of the Ministry of Health(Perú). The processing and cleaning of the databases, generation of reports through tables and graphs, management reports are the responsibility of the INS/CENAN, financed by the articulated nutritional budget program (PAN).
+</p>
+
+<b>Analysis Unit:</b>
+
+- <b>Children under five years of age</b>
+- <b>Pregnant women</b>
+
+<b>Collected Variables:</b>
+
+- <b>Children under five years of age</b>: weight, height, age, hemoglobin or hematocrit
+- <b>Pregnant women</b>: current weight, height, age, pre-pregnancy weight, gestational week, type of pregnancy
+
+<b>Indicators:</b>
+ 
+- <b>Children under five years of age</b>:
+  - Height/Age (Chronic Malnutrition)
+  - Weight/Age (Global Malnutrition)
+  - Weight/Height (Acute malnutrition, overweight, obesity)
+  - Hemoglobin and Hematocrit (mild, moderate and severe anemia)
+- <b>Pregnant women</b>: 
+  - Low, adequate and high weight gain, according to IMC Pre-pregnancy Weight
+  - Hemoglobin and Hematocrit (mild, moderate and severe anemia)
+
+<b>Reference standards</b>
+
+- <b>Nutritional status of children under five years of age</b>
+  - Growth patterns OMS 2006
+- <b>Nutritional status of pregnant mothers</b>:
+  - <b>Pre-pregnancy IMC. The physical state</b>: use and interpretation of anthropometry. Report of the OMS Expert Committee, Technical Report Series 854, Geneva, Switzerland. OMS, 1995.
+  - <b>Weight gain</b>: Institute of Medicine: Weight Gain During Pregnancy: Reexamining the Guidelines. Washington, National Academy Press, 2009.
+- <b>Diagnosis of Anemia</b>: OMS-MINSA ranges. Prevention and Control of Iron Deficiency Lima, 2000. Adapted according to altitude.
+
+
+
+
+
+
 
 
 ## 10. References
