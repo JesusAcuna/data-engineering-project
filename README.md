@@ -16,7 +16,7 @@ In 2003, the INS/CENAN, which is the National Institute of Health(Perú), implem
 - 1.[Description of the problem](#1-description-of-the-problem)
 - 2.[Objective](#2-objective)
 - 3.[Data description](#3-data-description)
-- 4.[Setting up the virtual environment](#4-setting-up-the-virtual-environment)
+- 4.[Terraform](#4-terraform)
 - 5.[Importing data](#5-importing-data)
 - 6.[Notebook](#6-notebook)
   - 6.1.[Exploratory Data Analysis (EDA)](#61-exploratory-data-analysis-eda)
@@ -113,17 +113,13 @@ The source of information is secondary, it corresponds to the information regist
 
 - <b>Nutritional status of children under five years of age</b>
   - Growth patterns OMS 2006
-- <b>Nutritional status of pregnant mothers</b>:
+- <b>Nutritional status of pregnant women</b>:
   - <b>Pre-pregnancy IMC. The physical state</b>: use and interpretation of anthropometry. Report of the OMS Expert Committee, Technical Report Series 854, Geneva, Switzerland. OMS, 1995.
   - <b>Weight gain</b>: Institute of Medicine: Weight Gain During Pregnancy: Reexamining the Guidelines. Washington, National Academy Press, 2009.
 - <b>Diagnosis of Anemia</b>: OMS-MINSA ranges. Prevention and Control of Iron Deficiency Lima, 2000. Adapted according to altitude.
 
 
-
-
-
-
-
+## 4. Terraform
 
 ## 10. References
 
