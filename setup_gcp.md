@@ -32,8 +32,22 @@
 
 <p align="justify">
 
+4. On Google Cloud Platform (GCP) select the hamburger icon, then select Cloud overview, click on Dashboard and finally click on `CREATE PROJECT`
+</p>
 
-4. 
+<p align="center">
+  <img src="images\create_project_gcp.png">
+</p>
+
+5.  Enter the name of your project and click on `CREATE`
+
+<p align="center">
+  <img src="images\new_project_gcp.png">
+</p>
+
+ 
+
+
 
 
 
