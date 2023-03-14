@@ -1,8 +1,9 @@
 # Google Cloud Platform - GCP
 
 ---
+
 <p align="center">
-  <img src="https://github.com/JesusAcuna/data-engineering-project/blob/main/images/gcp.png">
+  <img src="images\gcp.png">
 </p>
 
 ---
