@@ -1,7 +1,7 @@
 # Nutritional Status Information System - SIEN 
 
 <p align="center">
-  <img src="https://github.com/JesusAcuna/data-engineering-project/blob/main/images/SIEN.png">
+  <img src="images\SIEN.png">
 </p>
 
 ---
@@ -16,7 +16,9 @@ In 2003, the INS/CENAN, which is the National Institute of Health(Perú), implem
 - 1.[Description of the problem](#1-description-of-the-problem)
 - 2.[Objective](#2-objective)
 - 3.[Data description](#3-data-description)
-- 4.[Terraform](#4-terraform)
+- 4.[Instructions on how to run the project](#7-instructions-on-how-to-run-the-project)
+  - 4.1.[Setting up Google Cloud Platform account](#41-setting-up-google-cloud-platform-account)
+  - 4.2.[Creating a VM on Google Compute Engine](#42-creating-a-vm-on-google-compute-engine)
 - 5.[Importing data](#5-importing-data)
 - 6.[Notebook](#6-notebook)
   - 6.1.[Exploratory Data Analysis (EDA)](#61-exploratory-data-analysis-eda)
@@ -119,7 +121,30 @@ The source of information is secondary, it corresponds to the information regist
 - <b>Diagnosis of Anemia</b>: OMS-MINSA ranges. Prevention and Control of Iron Deficiency Lima, 2000. Adapted according to altitude.
 
 
-## 4. Terraform
+## 4. Instructions on how to run the project
+
+### 4.1. Setting up Google Cloud Platform account
+
+<p align="justify">
+
+In this part I created my project called `sien-project`, if you want to see the steps to create a project, just check out the instructions here [setup_gcp.md](./setup_gcp.md).
+
+</p>
+
+<p align="center">
+  <img src="images\new_project_gcp.png">
+</p>
+
+### 4.2. Creating a VM on Google Compute Engine
+
+
+
+
+
+
+
+
+
 
 ## 10. References
 
