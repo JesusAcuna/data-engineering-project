@@ -19,6 +19,8 @@ In 2003, the INS/CENAN, which is the National Institute of Health(Perú), implem
 - 4.[Instructions on how to run the project](#7-instructions-on-how-to-run-the-project)
   - 4.1.[Setting up Google Cloud Platform account](#41-setting-up-google-cloud-platform-account)
   - 4.2.[Creating a VM on Google Compute Engine](#42-creating-a-vm-on-google-compute-engine)
+  - 4.3.[VM instance connection configuration](#43-vm-instance-connecntion-configuration)
+  - 4.4.[Setting up VM instance](#44-setting-up-instance)
 - 5.[Importing data](#5-importing-data)
 - 6.[Notebook](#6-notebook)
   - 6.1.[Exploratory Data Analysis (EDA)](#61-exploratory-data-analysis-eda)
@@ -125,11 +127,7 @@ The source of information is secondary, it corresponds to the information regist
 
 ### 4.1. Setting up Google Cloud Platform account
 
-<p align="justify">
-
-In this part I created my project called `sien-project`, if you want to see the steps to create a project, just check out the instructions here [setup_gcp.md](./setup_gcp.md).
-
-</p>
+In this part I created my project called <code>sien-project</code>, if you want to see the steps to create a project, just check out the instructions here [`CREATE GCP PROJECT`](./create_gcp_project.md).
 
 <p align="center">
   <img src="images\new_project_gcp.png">
@@ -137,13 +135,25 @@ In this part I created my project called `sien-project`, if you want to see the 
 
 ### 4.2. Creating a VM on Google Compute Engine
 
+For this part I created my VM instance called <code>de-zoomcamp</code>, if you want to see the steps to create a VM instance, just check out the instructions here [`CREATE VM INSTANCE`](./create_vm_instance.md).
 
+<p align="center">
+  <img src="images\vm_instance_name.png">
+</p>
 
+### 4.3. VM instance connection configuration
 
+In this part I created a config file with the alias <code>de-zoomcamp</code> to connect to the VM instance , if you want to see these steps, just check out the instructions here [`CREATE CONNECTION VM`](./create_connection_vm.md).
 
+<p align="center">
+  <img src="images\ssh_de_zoomcamp.png">
+</p>
 
+### 4.4. Setting up VM instance
 
+For this part I installed in the virtual machine instance:
 
+- Anaconda environment
 
 
 ## 10. References
