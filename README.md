@@ -25,8 +25,9 @@ In 2003, the INS/CENAN, which is the National Institute of Health(Perú), implem
   - 5.1.[Creating a docker-compose](#51-creating-a-docker-compose)
   - 5.2.[Running a docker-compose](#52-running-a-docker-compose)
   - 5.3.[Port Forwarding](#53-port-forwarding)
+- 6.[Alternative B - Cloud](#6-alternative-b---cloud)
+  - 6.1.[Setting up Terraform ](#61-setting-up-terraform)
 
-- 6.[Alternative B](#6-alternative-b)
 - 10.[References](#10-references)
 ---
 ## Structure of the repository
@@ -125,6 +126,7 @@ emy Press, 2009.
 
 ## 4. Instructions on how to create the project
 
+
 ### 4.1. Setting up Google Cloud Platform account
 
 In this part I created my project called <code>sien-project</code>, if you want to see the steps to create a project, just check out the instructions here [`CREATE GCP PROJECT`](./create_gcp_project.md).
@@ -149,7 +151,7 @@ In this part I created a config file with the alias <code>de-zoomcamp</code> to 
   <img src="images\ssh_de_zoomcamp.png">
 </p>
 
-### 4.4. Setting up VM instance
+### 4.4. Setting up the VM instance
 
 For this part I installed in the virtual machine instance:
 
@@ -163,17 +165,14 @@ If you want to see the steps above, check it out here [`VM CONFIGURATION`](./vm_
 
 ## 5. Alternative A - Local
 
-### 5.1. Creating a docker-compose 
-
-<p align="justify">
-
 After finishing point [4.4. Setting up VM instance](#44-setting-up-instance) we need to create an open-source relational database managemnet system that emphasizes SQL extensibility and compliance (<code>POSTGRESQL</code>).
 
-And a web-based GUI tool used to interact with the Postgres database sessions, both locally and remote servers as well (<code>PGADMIN</code>).
+<p align="justify">
+And a web-based GUI tool used to interact with the Postgres database sessions, both locally and remote servers as well (<code>PGADMIN</code>).</p>
 
-</p>
+### 5.1. Creating a docker-compose 
 
-For that, I created a subfolder
+I created a subfolder data-engineering/baics_setup
 
     cd 
     mkdir data-engineering
@@ -247,7 +246,7 @@ And to close the container, type:
 
 ### 5.3. Port Forwarding
 
-To use Visual Studio Code, we can connect to a remote machine using SSH. check the instructions here to use [`REMOTE SSH`](./remote_ssh.md).
+To use Visual Studio Code, we can connect to a remote machine using SSH. check the instructions here to create a [`REMOTE SSH`](./remote_ssh.md).
 
 Let's port-forwarding port 5432 for the server, and 8080 for pg-admin
 
@@ -284,12 +283,135 @@ Connection:
   <img src="images\pgadmin_browser.png">
 </p>
 
+## 6. Alternative B - Cloud
+
+After finishing point [4.4. Setting up VM instance](#44-setting-up-instance) we need to create an open-source infrastructure-as-code software tool(<code>Terraform</code>).
+
+<p align="justify">
+Users define and provide data center infrastructure using a declarative configuration language known as HashiCorp Configuration Language, or optionally JSON.
+</p>
+
+### 6.1. Creating service account
+
+In this part I created my service account called <code>terraform-sien</code>, if you want to see the steps to create a project, just check out the instructions here [`CREATE SERVICE ACCOUNT`](./create_service_account.md).
+
+<p align="center">
+  <img src="images\export_google_credentials.png">
+</p>
+
+### 6.2. Edit Permissions 
+
+Let's add more permissions such as:
+
+- Storage Admin
+- Storage Object Admin
+- Big Query Admin
+
+In IAM section edit the terraform-sien service account.
+
+<p align="center">
+  <img src="images\edit_permissions_terraform_sien.png">
+</p>
+
+Click on <code>+ ADD ANOHTER ROLE</code> and add the Roles below:
+<p align="center">
+  <img src="images\more_permissions_terraform.png">
+</p>
+
+Activate two APIs
+
+- Identity and Access Management (IAM) API
+- IAM Service Account Credentials API
+
+<p align="center">
+  <img src="images\IAM_API.png">
+</p>
+
+<p align="center">
+  <img src="images\IAM_API_2.png">
+</p>
+
+### 6.3. Installing Terraform 
+
+Install terraform, in the description below is the link
+
+> https://developer.hashicorp.com/terraform/downloads
+
+Select Binary donwload for Linux
+
+> https://releases.hashicorp.com/terraform/1.4.2/terraform_1.4.2_linux_amd64.zip
+
+Type the commands below to download it and execute it:
+
+    cd
+    cd bin 
+    wget https://releases.hashicorp.com/terraform/1.4.2/terraform_1.4.2_linux_amd64.zip
+    sudo apt-get install unzip
+    unzip terraform_1.4.2_linux_amd64.zip
+
+<p align="center">
+  <img src="images\unzip_terraform.png">
+</p>
+
+Terraform is already in the Path, so I don't need to add it.
+<p align="center">
+  <img src="images\terraform_version.png">
+</p>
+
+### 6.4 Setting up Terraform files
+
+In this part I used a remote SSH for modifying terraform files, so you can take a look how to create a remote SSH  here [`REMOTE SSH`](./remote_ssh.md). 
+
+First I created a directory called terraform withe three files:
+
+- .terraform-version 
+- main.tf
+- variables.tf
+
+Locate in the terraform directory to initialize and install, type:
+
+    terraform init
+
+<p align="center">
+  <img src="images\terraform_init.png">
+</p>
+
+Match changes against the previous state
+
+    terraform plan
+
+<p align="center">
+  <img src="images\terraform_plan.png">
+</p>
+
+Apply changes to cloud
+
+    terraform apply
+
+
+<p align="center">
+  <img src="images\terraform_apply.png">
+</p>
+
+If tou want to remove your stack from cloud, you can type 
+
+    terraform destroy
 
 
 
-## 6. Alternative B 
 
-After finishing [4.4. Setting up VM instance](#44-setting-up-instance)
+
+
+
+ 
+
+
+
+
+
+
+
+
 
 ## 10. References
 
