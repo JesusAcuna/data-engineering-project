@@ -21,12 +21,25 @@ In 2003, the INS/CENAN, which is the National Institute of Health(Perú), implem
   - 4.2.[Creating a VM on Google Compute Engine](#42-creating-a-vm-on-google-compute-engine)
   - 4.3.[VM instance connection configuration](#43-vm-instance-connecntion-configuration)
   - 4.4.[Setting up VM instance](#44-setting-up-instance)
+
+
 - 5.[Alternative A - Local](#5-alternative-a---local)
   - 5.1.[Creating a docker-compose](#51-creating-a-docker-compose)
   - 5.2.[Running a docker-compose](#52-running-a-docker-compose)
   - 5.3.[Port Forwarding](#53-port-forwarding)
+  - 5.4.[Testing with little data](#54-testing-with-little-data)
+  - 5.5.[Orchestrating with prefect](#55-orchestrating-with-prefect)
+
+
 - 6.[Alternative B - Cloud](#6-alternative-b---cloud)
   - 6.1.[Setting up Terraform ](#61-setting-up-terraform)
+  - 6.2.[Edit Permissions](#62-edit-permissions)
+  - 6.3.[Installing Terraform](#63-installing-terraform)
+  - 6.4.[Setting up Terraform files](#64-setting-up-terraform-files)
+  - 6.5.[Orchestrating with prefect](#65-orchestrating-with-prefect)
+  - 6.6.[Deployment with prefect](#66-deployment-with-prefect)
+
+
 
 - 10.[References](#10-references)
 ---
@@ -151,7 +164,7 @@ In this part I created a config file with the alias <code>de-zoomcamp</code> to 
   <img src="images\ssh_de_zoomcamp.png">
 </p>
 
-### 4.4. Setting up the VM instance
+### 4.4. Setting up VM instance
 
 For this part I installed in the virtual machine instance:
 
@@ -162,6 +175,7 @@ For this part I installed in the virtual machine instance:
 - Spark
 
 If you want to see the steps above, check it out here [`VM CONFIGURATION`](./vm_configuration.md)
+
 
 ## 5. Alternative A - Local
 
@@ -283,6 +297,134 @@ Connection:
   <img src="images\pgadmin_browser.png">
 </p>
 
+### 5.4. Testing with little data
+
+
+<code>'ingest_data.py'</code> is a pipeline which does the webscraping, downloads xlsx files, and uploads the tables to the postgresql server. So I used this pipeline to test the process of extraction and load with little data
+
+<code>'read_parameters_2'</code> is a script that has the parameters to be able to convert an excel file to several dataframes, since a single excel file contains several sheets.
+
+First install psycopg2 
+
+    conda install psycopg2
+
+Run <code>ingest_data.py</code> in console:
+
+    URL="https://web.ins.gob.pe/es/alimentacion-y-nutricion/vigilancia-alimentaria-y-nutricional/vigilancia-del-sistema-de-informacion-del-estado-nutricional-en-%20EESS"
+    python ingest_data.py \
+      --user root \
+      --password root \
+      --host localhost \
+      --port 5432 \
+      --db sien \
+      --URL ${URL} \
+      --years 2022
+
+
+<p align="center">
+  <img src="images\python_ingest_data.png">
+</p>
+
+<p align="center">
+  <img src="images\pg_admin_ingest_data.png">
+</p>
+
+**(OPTIONAL)** Alternatively you can run the pipeline into a docker .
+
+Dockerfile
+
+    FROM python:3.9
+
+    RUN pip install pandas sqlalchemy psycopg2 requests beautifulsoup4 openpyxl lxml
+    WORKDIR /app
+
+    COPY ingest_data.py ingest_data.py
+    COPY read_parameters_2.py read_parameters_2.py
+
+    ENTRYPOINT [ "python","ingest_data.py" ]
+
+- Build
+
+      docker build --rm -t sien_ingest:v001 .
+
+- Entrypoing bash
+
+      docker run --rm -it --entrypoint bash sien_ingest:v001
+
+- Run   
+
+      URL="https://web.ins.gob.pe/es/alimentacion-y-nutricion/vigilancia-alimentaria-y-nutricional/vigilancia-del-sistema-de-informacion-del-estado-nutricional-en-%20EESS"
+      docker run --rm -it \
+        --network basics_setup_default \
+        sien_ingest:v001 \
+        --user root \
+        --password root \
+        --host basics_setup-pgdatabase-1 \
+        --port 5432 \
+        --db sien \
+        --URL ${URL} \
+        --years 2022
+
+
+### 5.5. Orchestrating with prefect
+
+Localte inside the prefect/local folder, and run the below codes:
+
+Create an environment
+
+    conda create -n zoomcamp
+
+And activate that environment
+
+    conda activate zoomcamp
+
+If you don't have pip, install it
+
+    conda install pip
+
+Intall the requirements
+
+    pip install -r requirements
+
+
+Also we need more libraries
+
+    pip install beautifulsoup4 openpyxl lxml
+
+<code>'ingest_data_2.py'</code> is a pipeline orchestrated by Prefect, which does the webscraping, downloads xlsx files, tranform xlsx files to dataframes, and uploads the tables to the postgresql server.
+
+
+Use prefect orion to visualize all the flow and tasks, which the pipeline has.
+
+    prefect orion start
+
+<p align="center">
+  <img src="images\orion_prefect.png">
+</p>
+
+
+Check out the dashboard 
+
+<p align="center">
+  <img src="images\prefect_orion_dashboard.png">
+</p>
+
+Create a block -> SQLAlchemyConnector
+
+<p align="center">
+  <img src="images\prefect_orion_block.png">
+</p>
+
+You can run it 
+
+    python ingest_data_2.py
+
+<p align="center">
+  <img src="images\prefect_ingest_data_2.png">
+</p>
+
+
+
 ## 6. Alternative B - Cloud
 
 After finishing point [4.4. Setting up VM instance](#44-setting-up-instance) we need to create an open-source infrastructure-as-code software tool(<code>Terraform</code>).
@@ -290,6 +432,7 @@ After finishing point [4.4. Setting up VM instance](#44-setting-up-instance) we 
 <p align="justify">
 Users define and provide data center infrastructure using a declarative configuration language known as HashiCorp Configuration Language, or optionally JSON.
 </p>
+
 
 ### 6.1. Creating service account
 
@@ -358,7 +501,17 @@ Terraform is already in the Path, so I don't need to add it.
   <img src="images\terraform_version.png">
 </p>
 
-### 6.4 Setting up Terraform files
+Google Cloud SDK Authentication
+
+    export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/sien-project.json
+
+    gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+
+Alternatively, you can authenticate using OAuth
+
+    gcloud auth application-default login
+
+### 6.4. Setting up Terraform files
 
 In this part I used a remote SSH for modifying terraform files, so you can take a look how to create a remote SSH  here [`REMOTE SSH`](./remote_ssh.md). 
 
@@ -397,20 +550,125 @@ If tou want to remove your stack from cloud, you can type
 
     terraform destroy
 
+### 6.5. Orchestrating with prefect
+
+Localte inside the prefect/cloud folder, and run the below codes:
+
+Create an environment
+
+    conda create -n zoomcamp
+
+And activate that environment
+
+    conda activate zoomcamp
+
+If you don't have pip, install it
+
+    conda install pip
+
+Intall the requirements
+
+    pip install -r requirements
+
+Also we need more libraries
+
+    pip install beautifulsoup4 openpyxl lxml
+
+<code>'ingest_data_6.py'</code> is a pipeline orchestrated by Prefect, which does the webscraping, tranform xlsx files to dataframes, and uploads the tables to Google Cloud Storage
 
 
+Use prefect orion to visualize all the flow and tasks, which the pipeline has.
 
+    prefect orion start
 
+<p align="center">
+  <img src="images\orion_prefect.png">
+</p>
 
+Create a block -> GCS Bucket, for that copy the key generated when I created the service account and paste it, take a look how generate the key here [`CREATE SERVICE ACCOUNT`](./create_service_account.md)
 
- 
+<p align="center">
+  <img src="images\gcs_bucket_block.png">
+</p>
 
+### 6.6. Deployment with prefect
 
+    prefect deployment build ./ingest_data_6.py:main_flow -n "Parameterized ETL"
 
+<p align="center">
+  <img src="images\deployment_build_cmd.png">
+</p>
 
+<p align="center">
+  <img src="images\deployment_build.png">
+</p>
 
+    prefect deployment apply main_flow-deployment.yaml
 
+<p align="center">
+  <img src="images\deployment_apply.png">
+</p>
 
+In deployment I chose <code>"Quick Run"</code>
+
+<p align="center">
+  <img src="images\quick_run.png">
+</p>
+
+    prefect agent start  --work-queue "default"
+
+<p align="center">
+  <img src="images\apply_agent.png">
+</p>
+
+    prefect deployment build ./ingest_data_6.py:main_flow -n "etl2" --cron "0 0 * * *" -a
+
+### 6.7. Running Prefect flows on docker containers
+
+Dockerfile
+
+    FROM prefecthq/prefect:2.7.7-python3.9
+
+    COPY docker-requirements.txt .
+
+    RUN pip install -r docker-requirements.txt --trusted-host pypi.python.or --no-cache-dir
+
+    WORKDIR  /de-zoomcap
+
+    COPY ingest_data_6.py ingest_data_6.py
+    COPY read_parameters.py read_parameters.py 
+
+--- 
+    docker image build -t jesus6105/prefect:zoom .
+
+<p align="center">
+  <img src="images\docker_build_prefect.png">
+</p>
+
+    docker image push jesus6105/prefect:zoom
+
+<p align="center">
+  <img src="images\docker_push_prefect.png">
+</p>
+
+Set up a docker block
+
+<p align="center">
+  <img src="images\docker_block_prefect.png">
+</p>
+
+<p align="center">
+  <img src="images\docker_block_configuration.png">
+</p>
+
+    python docker_deploy.py
+<p align="center">
+  <img src="images\docker_deploy_py.png">
+</p>
+
+    prefect deployment run Main Flow/docker-flow --parameters '{"URL":"https://web.ins.gob.pe/es/alimentacion-y-nutricion/vigilancia-alimentaria-y-nutricional/vigilancia-del-sistema-de-informacion-del-estado-nutricional-en-%20EESS","years":[2022]}'
+
+  when run the above command try to delete all cache decoraters in  <code>'ingest_data_6.py'</code>
 
 
 ## 10. References
