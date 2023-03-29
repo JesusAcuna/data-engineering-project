@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: staging
+    database: sien-project
+    schema: sien_data_all
+
+    tables:
+      - name: 'VRAEM_children_Anemia 6-35m x DISTRITO_2022_01_03'
+      - name: 'VRAEM_children_Anemia 6-35m x DISTRITO_2022_01_06'
+      - name: 'VRAEM_children_Anemia 6-35m x DISTRITO_2022_01_09'
+      
