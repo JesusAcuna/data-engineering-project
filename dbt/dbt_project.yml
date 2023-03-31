@@ -35,3 +35,17 @@ models:
   sien_project:
     # Applies to all files under models/example/
 
+seeds: 
+    sien_project:
+        ubigeous_lookup:
+            +column_types:
+                ubigeo_reniec: string
+                ubigeo_inei: string
+        lon_lat:
+            +column_types:
+                Department: string
+                Longitude: string
+                Latitude: string
+
+
+

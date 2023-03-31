@@ -6,7 +6,33 @@ sources:
     schema: sien_data_all
 
     tables:
-      - name: 'VRAEM_children_Anemia 6-35m x DISTRITO_2022_01_03'
-      - name: 'VRAEM_children_Anemia 6-35m x DISTRITO_2022_01_06'
-      - name: 'VRAEM_children_Anemia 6-35m x DISTRITO_2022_01_09'
+      - name: 'children_Anemia 6-35m x DEP_2022_01_03'
+      - name: 'children_Anemia 6-35m x DEP_2022_01_06'
+      - name: 'children_Anemia 6-35m x DEP_2022_01_09'
+      - name: 'children_Anemia 6-59m x DEP_2022_01_03'
+      - name: 'children_Anemia 6-59m x DEP_2022_01_06'
+      - name: 'children_Anemia 6-59m x DEP_2022_01_09'
+      - name: 'foreign_children_Anemia 6-35m x DEP_2022_01_03'
+      - name: 'foreign_children_Anemia 6-35m x DEP_2022_01_06'
+      - name: 'foreign_children_Anemia 6-35m x DEP_2022_01_09'
+      - name: 'foreign_children_Anemia 6-59m x DEP_2022_01_03'
+      - name: 'foreign_children_Anemia 6-59m x DEP_2022_01_06'
+      - name: 'foreign_children_Anemia 6-59m x DEP_2022_01_09'
+      - name: 'pregnant_women_Anemia x DEP_2022_01_06'
+      - name: 'pregnant_women_Anemia x DEP_2022_01_09'
+      - name: 'children_EN 0-35m x DEP_2022_01_03'
+      - name: 'children_EN 0-35m x DEP_2022_01_06'
+      - name: 'children_EN 0-35m x DEP_2022_01_09'
+      - name: 'children_EN 0-59m x DEP_2022_01_03'
+      - name: 'children_EN 0-59m x DEP_2022_01_06'
+      - name: 'children_EN 0-59m x DEP_2022_01_09'
+      - name: 'foreign_children_EN 0-35m x DEP_2022_01_03'
+      - name: 'foreign_children_EN 0-35m x DEP_2022_01_06'
+      - name: 'foreign_children_EN 0-35m x DEP_2022_01_09'
+      - name: 'foreign_children_EN 0-59m x DEP_2022_01_03'
+      - name: 'foreign_children_EN 0-59m x DEP_2022_01_06'
+      - name: 'foreign_children_EN 0-59m x DEP_2022_01_09'
+      
+
+      
       
