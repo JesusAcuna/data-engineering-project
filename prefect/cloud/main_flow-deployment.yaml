@@ -1,0 +1,51 @@
+###
+### A complete description of a Prefect Deployment for flow 'Main Flow'
+###
+name: Parameterized ETL
+description: Zoomcamp deployment
+version: eca947c33aff72a04e7563d7ae24bd66
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters:
+  URL: https://web.ins.gob.pe/es/alimentacion-y-nutricion/vigilancia-alimentaria-y-nutricional/vigilancia-del-sistema-de-informacion-del-estado-nutricional-en-%20EESS
+  years:
+  - 2022
+schedule: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: Main Flow
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: a26057fd-e7a5-46f3-8e9a-d6a9fa279b66
+  _block_document_name: anonymous-4d234e30-1878-4041-aaf8-9e9363646c8f
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage: null
+path: /home/jesus/de-zoomcamp/prefect/cloud
+entrypoint: ingest_data_6.py:main_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    URL:
+      title: URL
+      position: 0
+    years:
+      title: years
+      position: 1
+  required:
+  - URL
+  - years
+  definitions: null
