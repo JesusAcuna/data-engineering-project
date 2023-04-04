@@ -132,6 +132,10 @@ For setting up the VM Instance or Local Machine I installed these tools:
 I created a data architecture flow for data engineering zoomcamp 2023, this flows is for batch processing, since in my project data is uptaded monthly. 
 </p>
 
+<p align="justify">
+ I did the graphics in power point, and the  file is uploaded in <code>power_point</code>, so you can edit it
+</p>
+
 <p align="center">
   <img src="images\data_architecture.png">
 </p>
